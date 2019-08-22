@@ -3,13 +3,13 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const config = {
-	apiKey: "AIzaSyAoys-mncrq-RPsRP9_SuiJOyYwkEOD7dU",
-	authDomain: "react-ecommerce-a1607.firebaseapp.com",
-	databaseURL: "https://react-ecommerce-a1607.firebaseio.com",
-	projectId: "react-ecommerce-a1607",
-	storageBucket: "react-ecommerce-a1607.appspot.com",
-	messagingSenderId: "452672333461",
-	appId: "1:452672333461:web:fa2cdeef2de0e691"
+	apiKey: "AIzaSyCdHT-AYHXjF7wOrfAchX4PIm3cSj5tn14",
+	authDomain: "crwn-db.firebaseapp.com",
+	databaseURL: "https://crwn-db.firebaseio.com",
+	projectId: "crwn-db",
+	storageBucket: "crwn-db.appspot.com",
+	messagingSenderId: "850995411664",
+	appId: "1:850995411664:web:7ddc01d597846f65"
 };
 
 firebase.initializeApp(config);
@@ -72,11 +72,20 @@ export const convertCollectionsSnapshotToMap = (collections) => {
 	}, {});
 };
 
+export const getCurrentUser = () => {
+	return new Promise((resolve, reject) => {
+		const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+			unsubscribe();
+			resolve(userAuth);
+		}, reject);
+	});
+};
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: "select_account" });
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;
