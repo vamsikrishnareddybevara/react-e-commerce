@@ -1,6 +1,4 @@
-## Lesson-26-complete
-
-In this repository, all our components have been converted to styled-components!
+## Online Clothing Store
 
 
 # How to fork and clone
